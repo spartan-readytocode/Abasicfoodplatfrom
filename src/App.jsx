@@ -21,9 +21,3 @@ const App = () => {
 };
 
 export default App;
-
-{
-  /* <div className="brief text-red-500 text-center font-mono font-bold ">
-PLEASE SHARE YOUR VALUABLE FEEDBACK WITH US THAT WILL HELP US TO IMPROVE{" "}
-</div> */
-}
