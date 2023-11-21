@@ -14,6 +14,7 @@ import b1 from "../Images/b1.jpg";
 import b2 from "../Images/b2.jpg";
 import b3 from "../Images/b3.jpg";
 import b4 from "../Images/b4.jpg";
+import smile from "../Images/smile.png";
 
 export {
   pizza1,
@@ -32,4 +33,5 @@ export {
   b2,
   b3,
   b4,
+  smile,
 };

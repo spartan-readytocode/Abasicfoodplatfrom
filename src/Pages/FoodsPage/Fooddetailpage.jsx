@@ -1,18 +1,35 @@
 import React from "react";
-import {
-  pizzainfo,
-  sandwichinfo,
-  icecreaminfo,
-  burgerinfo,
-} from "../../Constraints/Index";
+import { pizzainfo, sandwichinfo, burgerinfo } from "../../Constraints/Index";
+import { addToCart as addPizzaToCart } from "../../Store/Features/PizzaSlice";
+import { addToCart as addSandwichToCart } from "../../Store/Features/SandwichSlice";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 
-const Fooddetailpage = () => {
+const FoodDetailPage = () => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (id, type) => {
+    switch (type) {
+      case "pizza":
+        dispatch(addPizzaToCart({ id, quantity: 1 }));
+        break;
+      case "sandwich":
+        dispatch(addSandwichToCart({ id, quantity: 1 }));
+        break;
+      case "burger":
+        dispatch(addBurgerToCart({ id, quantity: 1 }));
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div>
       <div className="container">
         <div className="basics">
           <p className="font-mono text-lg font-semibold text-center">
-            COME GRABS SOME SNACKS AND FILL YOUR TUMMY
+            COME GRAB SOME SNACKS AND FILL YOUR TUMMY
           </p>
         </div>
       </div>
@@ -25,64 +42,44 @@ const Fooddetailpage = () => {
                 key={index}
                 className="p-2 border-4 border-blue-900 flex flex-col gap-3"
               >
-                <div className="imagecontaine ">
-                  <img src={item.img} className="w-80 h-72" />
+                <div className="imagecontaine">
+                  <img src={item.img} className="w-80 h-72" alt={item.title} />
                 </div>
                 <div className="discription text-center font-semibold font-Mukta">
                   {item.title} <br />
-                  <button className="p-2 border border-black bg-black text-white hover:bg-slate-600">
-                    ORDER NOW
+                  <button
+                    onClick={() => handleAddToCart(item.id, "pizza")}
+                    className="p-2 border border-black bg-black text-white hover:bg-slate-600"
+                  >
+                    <NavLink to={"/cart"}>ORDER NOW</NavLink>
                   </button>
                 </div>
               </div>
             );
           })}
-          {""}{" "}
         </div>
       </div>
       {/* this is for the sandwich section  */}
-      <div className="sandwhichcontainer" id="sandwich">
+      <div className="sandwichcontainer" id="sandwich">
         <p className="font-bold text-3xl font-mono text-center">Sandwiches </p>
 
-        <div className="sandwhiches items flex flex-wrap lg:flex-row gap-6 justify-center">
+        <div className="sandwiches items flex flex-wrap lg:flex-row gap-6 justify-center">
           {sandwichinfo.map((item, key) => {
             return (
               <div
                 key={key}
                 className="p-2 border-4 border-green-900 flex flex-col gap-3"
               >
-                <div className="imagecontaine ">
-                  <img src={item.img} className="w-80 h-72" />
+                <div className="imagecontainer ">
+                  <img src={item.img} className="w-80 h-72" alt={item.title} />
                 </div>
-                <div className="discription text-center font-semibold font-Mukta">
+                <div className="description text-center font-semibold font-Mukta">
                   {item.title} <br />
-                  <button className="p-2 border border-black bg-black text-white hover:bg-slate-600">
-                    ORDER NOW
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      {/* this is for the icecream sections */}
-      <div className="icecreamcontainer" id="icecream">
-        <p className="font-bold text-3xl font-mono text-center">Ice Creams </p>
-
-        <div className="sandwhiches items flex flex-wrap lg:flex-row gap-6 justify-center">
-          {icecreaminfo.map((item, key) => {
-            return (
-              <div
-                key={key}
-                className="p-2 border-4 border-green-900 flex flex-col gap-3"
-              >
-                <div className="imagecontaine ">
-                  <img src={item.img} className="w-80 h-72" />
-                </div>
-                <div className="discription text-center font-semibold font-Mukta">
-                  {item.title} <br />
-                  <button className="p-2 border border-black bg-black text-white hover:bg-slate-600">
-                    ORDER NOW
+                  <button
+                    onClick={() => handleAddToCart(item.id, "sandwich")}
+                    className="p-2 border border-black bg-black text-white hover:bg-slate-600"
+                  >
+                    <NavLink to={"/cart"}>ORDER NOW</NavLink>
                   </button>
                 </div>
               </div>
@@ -91,7 +88,7 @@ const Fooddetailpage = () => {
         </div>
       </div>
       {/* this is for the burger section  */}
-      <div className="burgercontainerr" id="burger">
+      <div className="burgercontainer" id="burger">
         <p className="font-bold text-3xl font-mono text-center">BURGERS </p>
 
         <div className="burgers items flex flex-wrap lg:flex-row gap-6 justify-center">
@@ -101,12 +98,15 @@ const Fooddetailpage = () => {
                 key={key}
                 className="p-2 border-4 border-green-900 flex flex-col gap-3"
               >
-                <div className="imagecontaine ">
-                  <img src={item.img} className="w-80 h-72" />
+                <div className="imagecontainer ">
+                  <img src={item.img} className="w-80 h-72" alt={item.title} />
                 </div>
                 <div className="discription text-center font-semibold font-Mukta">
                   {item.title} <br />
-                  <button className="p-2 border border-black bg-black text-white hover:bg-slate-600">
+                  <button
+                    onClick={() => handleAddToCart(item.id, "burger")}
+                    className="p-2 border border-black bg-black text-white hover:bg-slate-600"
+                  >
                     ORDER NOW
                   </button>
                 </div>
@@ -119,4 +119,4 @@ const Fooddetailpage = () => {
   );
 };
 
-export default Fooddetailpage;
+export default FoodDetailPage;

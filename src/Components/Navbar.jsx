@@ -7,7 +7,7 @@ const Navbar = () => {
   const listItemStyles =
     "font-Mukta  font-medium flex  item-center gap-1 lg:gap-2  lg:text-xl text:center ";
   return (
-    <div>
+    <div className="sticky z-30">
       <div className="container flex justify-between lg:justify-between p-2 ">
         <div className="logo lg:px-3">
           <span className="font-semibold text-xl lg:text-2xl text-red-800">
@@ -40,6 +40,9 @@ const Navbar = () => {
               <span className="text-blue-600">
                 <MdFeedback />
               </span>
+            </NavLink>
+            <NavLink to="/cart" className={listItemStyles}>
+              <span>CART</span>
             </NavLink>
           </ul>
         </div>
