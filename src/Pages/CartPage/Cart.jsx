@@ -36,7 +36,7 @@ const Cart = () => {
   };
 
   const renderCartItem = (item) => (
-    <li key={item.id} className="p-3 border border-red-600">
+    <li key={item.id} className="p-3 border border-red-600 ">
       <img src={item.img} alt={item.title} className="w-72 h-72" />
       <p className="text-center">
         {item.title} <br />
@@ -50,6 +50,11 @@ const Cart = () => {
           <RiSubtractFill className="red" />
         </button>
       </div>
+      <div className="buttoncontainer flex justify-center mt-1">
+        <button className="p-2  border-2 font-semibold text-white bg-black rounded-3xl">
+          BUY NOW
+        </button>
+      </div>
     </li>
   );
 
@@ -57,25 +62,27 @@ const Cart = () => {
     <div>
       <div>
         <h2 className="text-center font-bold text-xl">YOUR CART </h2>
-        {pizzaCart.length === 0 && sandwichCart.length === 0 ? (
-          <div className="flex  flex-col justify-center items-center gap-4 p-3 ">
-            <img src={smile} alt="" className="w-72" />
-            <p className="text-center text-3xl font-sans font-extrabold text-red-600">
-              Your cart is empty.
-            </p>
-          </div>
-        ) : (
-          <ul>
-            <div className="flex flex-wrap gap-3">
-              {pizzaCart.map((item) =>
-                renderCartItem({ ...item, type: "pizza" })
-              )}
-              {sandwichCart.map((item) =>
-                renderCartItem({ ...item, type: "sandwich" })
-              )}
+        <div className="flex flex-wrap justify-center items-center">
+          {pizzaCart.length === 0 && sandwichCart.length === 0 ? (
+            <div className="flex  flex-col justify-center items-center gap-4 p-3 ">
+              <img src={smile} alt="" className="w-72" />
+              <p className="text-center text-3xl font-sans font-extrabold text-red-600">
+                Your cart is empty.
+              </p>
             </div>
-          </ul>
-        )}
+          ) : (
+            <ul>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {pizzaCart.map((item) =>
+                  renderCartItem({ ...item, type: "pizza" })
+                )}
+                {sandwichCart.map((item) =>
+                  renderCartItem({ ...item, type: "sandwich" })
+                )}
+              </div>
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
